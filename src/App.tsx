@@ -1,13 +1,14 @@
 import React from "react";
 import logo from "./logo.svg";
-import "./App.css";
-import Dashboard from "./pages/DashBorad/Dashboard";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Router from "./router/Router";
+import { AppContainer } from "./App.style";
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <AppContainer className="App">
+      <Router />
+    </AppContainer>
   );
 }
 

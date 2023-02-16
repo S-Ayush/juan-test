@@ -1,5 +1,4 @@
 import { styled } from "@mui/system";
-import { theme } from "../../../styles/Theme";
 
 export const MainDiv = styled("div")({
   height: "fit-content",
@@ -27,7 +26,9 @@ export const LogoDiv = styled("div")({
   padding: "1rem 1rem 0rem",
   marginBottom: "1rem",
   "& svg": {
-    minWidth: "30px",
+    minWidth: "103px",
+    zoom: 0.4,
+    height: "90px",
   },
   boxSizing: "border-box",
 });
@@ -36,7 +37,7 @@ export const LogoTextDiv = styled("div")({
   fontWeight: "800",
   fontSize: "23.7432px",
   lineHeight: "29px",
-  color: "#00a1e0", //theme.colors.primaryMainColor,
+  color: "#00a1e0",
   marginLeft: "0.25rem",
   overflow: "hidden",
 });
@@ -103,9 +104,38 @@ export const MenuItem = styled("div")({
       fill: "white",
     },
   },
+  "&.active": {
+    background: "#00a1e0",
+    color: "#ffffff",
+    borderRadius: "20px",
+    "& path": {
+      fill: "white",
+    },
+  },
+  "&.closedActive": {
+    marginLeft: "-6px",
+    overflow: "hidden",
+    padding: 0,
+    gap: 0,
+    marginRight: "-12px",
+  },
 });
 export const ImageWarper = styled("div")({
   display: "flex",
+  color:"#798ea3",
+  "&.imgWrapperActive": {
+    height: "42px",
+    width: "42px",
+    minWidth: "42px",
+    background: "#00a1e0",
+    borderRadius: "50%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    "& path": {
+      fill: "white",
+    },
+  },
 });
 export const Divider = styled("hr")({
   display: "flex",
@@ -168,4 +198,32 @@ export const SubMenuTitle = styled("div")({
 
 export const RightArrowContainer = styled("div")({
   marginLeft: "auto",
+});
+
+export const FooterContainer = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+  backgroundColor: "#ffffff",
+  width: "90%",
+  padding: "0.25rem 0.75rem",
+  position: "absolute",
+  bottom: "1rem",
+  borderRadius: "12px",
+});
+
+export const LogOutWarper = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  gap: "1rem",
+  padding: "0.5rem",
+  paddingLeft: "1.25rem",
+  textDecoration: "none",
+  height: "40px",
+});
+
+export const LogOutText = styled("div")({
+  fontWeight: "400",
+  fontSize: "14px",
+  lineHeight: "17px",
+  color: "#798ea3",
 });

@@ -7,7 +7,7 @@ const RouteDefinitions = {
   ROUTE_DASHBOARD: "/dashboard",
 
   // TODOS
-  ROUTE_TODOS: "/todos/:view",
+  ROUTE_TODOS: "/todos",
 
   // Setting
   ROUTE_SETTINGS_PROFILE_INFO: "/settings/profile-info",

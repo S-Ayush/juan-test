@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import {
+  FooterContainer,
   IconPannelDiv,
   ImageWarper,
   LogoDiv,
   LogoTextDiv,
+  LogOutText,
+  LogOutWarper,
   MainDiv,
   MenuItem,
   MenuItemContent,
@@ -12,58 +15,67 @@ import {
   SettingsItemWarper,
 } from "./SideBarMenu.style";
 import { ReactComponent as CompanyLogo } from "../../../assests/logos/DummyLogo.svg";
-import { ReactComponent as UserSettings } from "../../../assests/sidebarAssets/user-settings-icon.svg";
-import { theme } from "../../../styles/Theme";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
 import sidebarMenuLinks from "../../../constants/SideBarMenuLinks";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import NestedMenus from "./nestedMenu/NestedMenus";
+import { StyledNavLink } from "../../../styles/global.style";
+import RouteDefinitions from "../../../router/RouteDefinition";
 
 function SideBarMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const location = useLocation().pathname;
+
+  const getActiveMenu = (route: string) => {
+    return route.split("/")[0] === location.split("/")[0];
+  };
 
   return (
     <MainDiv
       style={{ width: isOpen ? "286px" : "72px" }}
-        onMouseEnter={() => {
-          setIsOpen(true);
-        }}
-        onMouseLeave={() => {
-          setIsOpen(false);
-        }}
+      onMouseEnter={() => {
+        setIsOpen(true);
+      }}
+      onMouseLeave={() => {
+        setIsOpen(false);
+      }}
     >
       <LogoDiv>
         <CompanyLogo width={48} height={28} />
-        <LogoTextDiv
-          style={{
-            visibility: isOpen ? "visible" : "hidden",
-          }}
-        >
-          NEET
-        </LogoTextDiv>
+        <LogoTextDiv className={!isOpen ? "hidden" : ""}>NEET</LogoTextDiv>
       </LogoDiv>
       <IconPannelDiv>
         {/* Main Menu Section */}
         <MenuItemWarper>
-          <MenuItemHeader style={{ visibility: isOpen ? "visible" : "hidden" }}>
+          <MenuItemHeader className={!isOpen ? "hidden" : ""}>
             Main menu
           </MenuItemHeader>
           <MenuItemContent>
             {sidebarMenuLinks.mainMenuPages.map((page) => (
               <div key={page.title}>
-                {/* <NavLink to={page.route} key={page.title}>
-                  {({ isActive }) => ( */}
-                <MenuItem onClick={() => setIsOpen(!isOpen)} aria-hidden="true">
-                  <ImageWarper>{page.image}</ImageWarper>
-                  <div
-                    style={{
-                      visibility: isOpen ? "visible" : "hidden",
-                    }}
-                  >
-                    {page.title}
-                  </div>
-                </MenuItem>
-                {/* )}
-                </NavLink> */}
+                <StyledNavLink to={page.route} key={page.title}>
+                  {({ isActive }) => (
+                    <MenuItem
+                      onClick={() => setIsOpen(!isOpen)}
+                      aria-hidden="true"
+                      className={`${isActive && !isOpen && "closedActive"} ${
+                        isActive && isOpen && "active"
+                      }`}
+                    >
+                      <ImageWarper
+                        className={`${
+                          isActive && !isOpen && "imgWrapperActive"
+                        }`}
+                      >
+                        {page.image}
+                      </ImageWarper>
+                      <div className={!isOpen ? "hidden" : ""}>
+                        {page.title}
+                      </div>
+                    </MenuItem>
+                  )}
+                </StyledNavLink>
               </div>
             ))}
           </MenuItemContent>
@@ -72,8 +84,8 @@ function SideBarMenu() {
         {/* Settings Menu section */}
         <SettingsItemWarper>
           <MenuItemHeader
+            className={!isOpen ? "hidden" : ""}
             style={{
-              visibility: isOpen ? "visible" : "hidden",
               marginBottom: isOpen ? "inherit" : "0px",
             }}
           >
@@ -81,7 +93,10 @@ function SideBarMenu() {
           </MenuItemHeader>
           <MenuItemContent>
             <NestedMenus
-              parentMenu={{ image: <UserSettings />, title: "User Settings" }}
+              parentMenu={{
+                image: <AccountCircleIcon color="inherit" />,
+                title: "User Settings",
+              }}
               childMenuList={sidebarMenuLinks.sidebarSettingsPages.userSettings}
               isOpen={isOpen}
               setIsOpen={setIsOpen}
@@ -89,6 +104,16 @@ function SideBarMenu() {
           </MenuItemContent>
         </SettingsItemWarper>
       </IconPannelDiv>
+      <FooterContainer>
+        <StyledNavLink to={RouteDefinitions.ROUTE_LOGIN}>
+          <LogOutWarper>
+            <ImageWarper>
+              <LogoutIcon color="inherit" />
+            </ImageWarper>
+            <LogOutText className={!isOpen ? "hidden" : ""}>Logout</LogOutText>
+          </LogOutWarper>
+        </StyledNavLink>
+      </FooterContainer>
     </MainDiv>
   );
 }

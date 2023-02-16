@@ -1,32 +1,19 @@
-import { ReactComponent as Dashboard } from "../assests/sidebarAssets/dashboard-icon.svg"
-import { ReactComponent as Opportunities } from "../assets/sidebarAssets/opportunities-icon.svg";
-import { ReactComponent as Forecasting } from "../assets/sidebarAssets/forecasting-icon.svg";
-import { ReactComponent as Trends } from "../assets/sidebarAssets/trends-icon.svg";
-import { ReactComponent as UpcomingMeetings } from "../assets/sidebarAssets/upcoming-meetings-icon.svg";
-import { ReactComponent as LinkedAccounts } from "../assets/sidebarAssets/linked-accounts-icon.svg";
-import { ReactComponent as PersonalInfo } from "../assests/sidebarAssets/personal-info-icon.svg";
-import { ReactComponent as ManageMetrics } from "../assets/sidebarAssets/manage-metrics-icon.svg";
-import { ReactComponent as ManageFilters } from "../assets/sidebarAssets/manage-filters-icon.svg";
-import { ReactComponent as OnBoarding } from "../assets/sidebarAssets/onboarding-icon.svg";
-import { ReactComponent as ManageUsers } from "../assests/sidebarAssets/manage-users-icon.svg";
-import { ReactComponent as ForecastSettings } from "../assets/sidebarAssets/forecast-settings-icon.svg";
-import { ReactComponent as Topics } from "../assets/sidebarAssets/topics-icon.svg";
-import { ReactComponent as Competitors } from "../assets/sidebarAssets/competitors-icon.svg";
-import { ReactComponent as ToDos } from "../assests/sidebarAssets/todos-icon.svg";
-import { ReactComponent as TPA } from "../assets/sidebarAssets/tpa.svg";
-import { ReactComponent as Workflows } from "../assets/sidebarAssets/workflows-icon.svg";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
+import GroupIcon from "@mui/icons-material/Group";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import RouteDefinitions from "../router/RouteDefinition";
 
 const sidebarMenuLinks = {
   mainMenuPages: [
     {
       title: "Dashboard",
-      image: <Dashboard />,
+      image: <DashboardIcon color="inherit" />,
       route: RouteDefinitions.ROUTE_DASHBOARD,
     },
     {
       title: "To-Dos",
-      image: <ToDos />,
+      image: <FormatListBulletedIcon color="inherit" />,
       route: RouteDefinitions.ROUTE_TODOS,
     },
   ],
@@ -34,12 +21,12 @@ const sidebarMenuLinks = {
     userSettings: [
       {
         title: "Personal Info",
-        image: <PersonalInfo />,
+        image: <ContactEmergencyIcon color="inherit" />,
         route: RouteDefinitions.ROUTE_SETTINGS_PROFILE_INFO,
       },
       {
         title: "Manage Users",
-        image: <ManageUsers />,
+        image: <GroupIcon color="inherit" />,
         route: RouteDefinitions.ROUTE_SETTINGS_MANAGE_USERS,
       },
     ],

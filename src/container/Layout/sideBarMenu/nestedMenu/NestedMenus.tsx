@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ImageWarper,
   MenuItem,
@@ -8,8 +8,10 @@ import {
   SettingsSubMenuOptionsWarper,
   SubMenuTitle,
 } from "../SideBarMenu.style";
-import { ReactComponent as RightArrow } from "../../../../assests/sidebarAssets/subMenuRightArrow.svg";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { IMenu } from "../../../../interfaces/LayoutInterface";
+import { StyledNavLink } from "../../../../styles/global.style";
+import { useLocation } from "react-router";
 
 type Props = {
   parentMenu: any;
@@ -20,34 +22,51 @@ type Props = {
 
 function NestedMenus({ parentMenu, childMenuList, isOpen, setIsOpen }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const activePath = useLocation().pathname;
+  const [isPathActive, setIsPathActive] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsPathActive(
+      childMenuList[0].route.split("/")[1] === activePath.split("/")[1]
+    );
+  }, [activePath]);
+
   return (
     <SettingsSubMenuOptionsWarper
       onMouseEnter={() => setIsMenuOpen((prev) => !prev)}
       onMouseLeave={() => setIsMenuOpen((prev) => !prev)}
     >
-      <MenuItem>
-        <ImageWarper>{parentMenu.image}</ImageWarper>
+      <MenuItem
+        className={`${isPathActive && !isOpen && "closedActive"} ${
+          isPathActive && isOpen && "active"
+        }`}
+      >
+        <ImageWarper
+          className={`${isPathActive && !isOpen && "imgWrapperActive"}`}
+        >
+          {parentMenu.image}
+        </ImageWarper>
         <div
-          style={{
-            visibility: isOpen ? "visible" : "hidden",
-          }}
+          className={!isOpen ? "hidden" : ""}
         >
           {parentMenu.title}
         </div>
         <RightArrowContainer>
-          <RightArrow />
+          <KeyboardArrowRightIcon color="inherit" />
         </RightArrowContainer>
       </MenuItem>
       {isMenuOpen && (
         <SettingsContent>
           {childMenuList?.map((menu: IMenu) => (
-            <SettingsSubMenuOptions
-              key={menu.title}
-              onClick={() => setIsOpen(false)}
-            >
-              <div>{menu.image}</div>
-              <SubMenuTitle>{menu.title}</SubMenuTitle>
-            </SettingsSubMenuOptions>
+            <StyledNavLink to={menu.route} key={menu.title}>
+              <SettingsSubMenuOptions
+                key={menu.title}
+                onClick={() => setIsOpen(false)}
+              >
+                <div>{menu.image}</div>
+                <SubMenuTitle>{menu.title}</SubMenuTitle>
+              </SettingsSubMenuOptions>
+            </StyledNavLink>
           ))}
         </SettingsContent>
       )}
