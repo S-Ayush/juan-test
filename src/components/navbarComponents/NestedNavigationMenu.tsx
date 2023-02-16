@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { IMenu } from "../../interfaces/LayoutInterface";
+import { StyledNavLink } from "../../styles/global.style";
+import { useLocation } from "react-router";
 import {
   ImageWarper,
   MenuItem,
@@ -7,11 +11,7 @@ import {
   SettingsSubMenuOptions,
   SettingsSubMenuOptionsWarper,
   SubMenuTitle,
-} from "../SideBarMenu.style";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { IMenu } from "../../../../interfaces/LayoutInterface";
-import { StyledNavLink } from "../../../../styles/global.style";
-import { useLocation } from "react-router";
+} from "../../styles/NavBarComponent.style";
 
 type Props = {
   parentMenu: any;
@@ -20,7 +20,12 @@ type Props = {
   setIsOpen: (isopen: boolean) => void;
 };
 
-function NestedMenus({ parentMenu, childMenuList, isOpen, setIsOpen }: Props) {
+function NestedNavigationMenu({
+  parentMenu,
+  childMenuList,
+  isOpen,
+  setIsOpen,
+}: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const activePath = useLocation().pathname;
   const [isPathActive, setIsPathActive] = useState<boolean>(false);
@@ -46,11 +51,7 @@ function NestedMenus({ parentMenu, childMenuList, isOpen, setIsOpen }: Props) {
         >
           {parentMenu.image}
         </ImageWarper>
-        <div
-          className={!isOpen ? "hidden" : ""}
-        >
-          {parentMenu.title}
-        </div>
+        <div className={!isOpen ? "hidden" : ""}>{parentMenu.title}</div>
         <RightArrowContainer>
           <KeyboardArrowRightIcon color="inherit" />
         </RightArrowContainer>
@@ -74,4 +75,4 @@ function NestedMenus({ parentMenu, childMenuList, isOpen, setIsOpen }: Props) {
   );
 }
 
-export default NestedMenus;
+export default NestedNavigationMenu;

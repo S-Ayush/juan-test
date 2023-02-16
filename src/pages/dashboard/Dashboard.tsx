@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../container/Layout/Layout";
+import Layout from "../../container/layout/Layout";
 
 function Dashboard() {
   return (

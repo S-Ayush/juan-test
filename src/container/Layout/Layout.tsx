@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import { ChildDiv, MainDiv } from "./Layout.style";
-import SideBarMenu from "./sideBarMenu/SideBarMenu";
+import { ChildDiv, MainDiv } from "../../styles/Layout.style";
+import SideBarMenu from "./SideBarMenu";
 
 type Props = {
   children: ReactNode;
