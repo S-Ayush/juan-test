@@ -96,7 +96,13 @@ function LoginForm() {
           <StyledButton variant="outlined" onClick={formik.handleReset}>
             Clear
           </StyledButton>
-          <StyledButton variant="contained" type="submit">
+          <StyledButton
+            variant="contained"
+            type="submit"
+            disabled={
+              isLoading || !formik.values.password || !formik.values.userName
+            }
+          >
             Login
           </StyledButton>
         </LoginActionButtons>
