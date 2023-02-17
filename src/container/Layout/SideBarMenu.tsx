@@ -13,7 +13,6 @@ import {
 import { ReactComponent as CompanyLogo } from "../../assets/logos/DummyLogo.svg";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import sidebarMenuLinks from "../../constants/SideBarMenuLinks";
-import { useLocation } from "react-router-dom";
 import NestedNavigationMenu from "../../components/navbarComponents/NestedNavigationMenu";
 import NavigationMenu from "../../components/navbarComponents/NavigationMenu";
 import LogOutComponent from "../../components/navbarComponents/LogOutComponent";
