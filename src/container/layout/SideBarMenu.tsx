@@ -9,13 +9,13 @@ import {
   MenuItemHeader,
   MenuItemWarper,
   SettingsItemWarper,
-} from "../../../styles/SideBarMenu.style";
+} from "../../styles/SideBarMenu.style";
 import { ReactComponent as CompanyLogo } from "../../assets/logos/DummyLogo.svg";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import sidebarMenuLinks from "../../../constants/SideBarMenuLinks";
-import NestedNavigationMenu from "../../../components/navbarComponents/NestedNavigationMenu";
-import NavigationMenu from "../../../components/navbarComponents/NavigationMenu";
-import LogOutComponent from "../../../components/navbarComponents/LogOutComponent";
+import sidebarMenuLinks from "../../constants/SideBarMenuLinks";
+import NestedNavigationMenu from "../../components/navbarComponents/NestedNavigationMenu";
+import NavigationMenu from "../../components/navbarComponents/NavigationMenu";
+import LogOutComponent from "../../components/navbarComponents/LogOutComponent";
 
 function SideBarMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
